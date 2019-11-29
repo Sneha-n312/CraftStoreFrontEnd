@@ -9,12 +9,17 @@ import { RequestformComponent } from './requestform/requestform.component';
 import { RequestserviceComponent } from './requestservice/requestservice.component';
 import { OrderformComponent } from './orderform/orderform.component';
 import { OrderserviceComponent } from './orderservice/orderservice.component';
+import {SigninSPComponent} from './signin-sp/signin-sp.component';
+import {SigninUBComponent} from './signin-ub/signin-ub.component';
+import {PaymentComponent} from './payment/payment.component';
+
+
 
 
 
 
 const routes: Routes = [
-  {path:'',component: WelcomeComponent},
+  {path:'welcome',component: WelcomeComponent},
   {path:'signup1',component: Signup1Component},
   {path:'signup2',component:Signup2Component},
   {path:'services',component:ServicesComponent},
@@ -22,7 +27,11 @@ const routes: Routes = [
   {path:'requestform',component:RequestformComponent},
   {path:'requestservice',component:RequestserviceComponent},
   {path:'orderform',component:OrderformComponent},
-  {path:'orderservice',component:OrderserviceComponent}
+  {path:'orderservice',component:OrderserviceComponent},
+  {path:'signinUB',component: SigninUBComponent},
+  {path:'signinSP',component: SigninSPComponent},
+  {path:'payment',component: PaymentComponent}
+
 
 ];
 

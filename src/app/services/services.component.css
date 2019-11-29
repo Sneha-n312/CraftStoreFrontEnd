@@ -1,4 +1,15 @@
-#body-row {
+.main {
+    background: #EDC7B7;
+    padding: 10px 0; 
+    background-size: cover;
+   background-position: center center;
+    background-repeat: no-repeat;
+    
+  }
+  .row{
+    opacity: 0.7;
+  }
+  #body-row {
     margin-left:0;
     margin-right:0;
     background-color: #EEE2DC;
@@ -79,3 +90,9 @@
      margin: 20px;
      background: #EDC7B7;
 }
+
+div.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+  }

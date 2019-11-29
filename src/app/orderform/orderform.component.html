@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+
 <div class="main">
 
         <!-- Sign up form -->
@@ -6,35 +11,54 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Order Form</h2>
-                        <form method="POST" class="register-form" novalidate id="register-form">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" method="POST" class="register-form" novalidate id="register-form">
                             <div class="form-group">
-                                <label for="rqstName"></label>
-                                <input type="text" [(ngModel)] ="order.rqstName" name="rqstName" id="rqstName" placeholder="Request Name" />
+                                <label for="rqstName"><i class="fa fa-user" aria-hidden="true"></i></label>
+                                <input type="text" [(ngModel)] ="order.rqstName" id="rqstName" placeholder="Request Name" formControlName="rqstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rqstName.errors }" />
+                                <div *ngIf="submitted && f.rqstName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.rqstName.errors.required">Request Name is required</div>
+                                </div>
                             </div> 
                             <div class="form-group">
-                                <label for="svcName"></label>
-                                <input type="text" [(ngModel)] ="order.svcName" name="svcName" id="svcName" placeholder="service name" />
+                                <label for="svcName"><i class="fa fa-user" aria-hidden="true"></i></label>
+                                <input type="text" [(ngModel)] ="order.svcName"  id="svcName" placeholder="service name" formControlName="svcName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.svcName.errors }" />
+                                <div *ngIf="submitted && f.svcName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.svcName.errors.required">Service Name is required</div>
+                                </div>
                             </div>
     
                             <div class="form-group">
-                                <label for="quantity"></label>
-                                <input type="text" [(ngModel)] ="order.quantity" name="quantity" id="quantity" placeholder="quantity" />
+                                <label for="quantity"><i class="fa fa-shopping-basket" aria-hidden="true"></i></label>
+                                <input type="text" [(ngModel)] ="order.quantity"  id="quantity" placeholder="quantity" formControlName="quantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                                    <div *ngIf="f.quantity.errors.required">Quantity is required</div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="price"></label>
-                                <input type="text" [(ngModel)] ="order.price" name="price" id="price" placeholder="price" />
+                                <label for="price"><i class="fa fa-money" aria-hidden="true"></i></label>
+                                <input type="text" [(ngModel)] ="order.price"  id="price" placeholder="price" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                    <div *ngIf="f.price.errors.required">Price is required</div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="spName"></label>
-                                <input type="text" [(ngModel)] ="order.spName" name="spName" id="spName" placeholder="Service Provider Name" />
+                                <label for="spName"><i class="fa fa-user" aria-hidden="true"></i></label>
+                                <input type="text" [(ngModel)] ="order.spName"  id="spName" placeholder="Service Provider Name" formControlName="spName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.spName.errors }" />
+                                <div *ngIf="submitted && f.spName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.spName.errors.required">Service provider Name is required</div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="bName"></label>
-                                <input type="text" [(ngModel)] ="order.bName"name="bName" id="bName" placeholder="Buyer Name" />
+                                <label for="bName"><i class="fa fa-user" aria-hidden="true"></i></label>
+                                <input type="text" [(ngModel)] ="order.bName" id="bName" placeholder="Buyer Name" formControlName="bName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bName.errors }" />
+                                <div *ngIf="submitted && f.bName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.bName.errors.required">Buyer Name is required</div>
+                                </div>
                             </div>
 
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Register" (click)="createOrder()" />
+                                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
                             </div>
                         </form>
                     </div>

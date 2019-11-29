@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SignUpService, ServiceProvider} from '../HelperServices/signupService'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { SignUpService, ServiceProvider } from '../HelperServices/signupService'
+import { MustMatch } from '../HelperServices/must-match.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup1',
@@ -8,15 +11,55 @@ import { SignUpService, ServiceProvider} from '../HelperServices/signupService'
 })
 export class Signup1Component implements OnInit {
 
-  sp: ServiceProvider = new ServiceProvider("","","","","","","");
-  constructor(private signupservice: SignUpService) { }
+  registerForm: FormGroup;
+  submitted = false;
+
+
+  sp: ServiceProvider = new ServiceProvider("", "", "", "", "", "", "");
+  constructor(private formBuilder: FormBuilder,private signupservice: SignUpService, private router:Router) { }
 
   ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      companyName: ['', Validators.required],
+      pass: ['', [Validators.required, Validators.minLength(6)]],
+      re_pass: ['', Validators.required]
+
+    }, {
+      validator: MustMatch('pass', 're_pass')
+    });
   }
 
-  createServiceProvider():void{
-    console.log(this.sp)
-    this.signupservice.createServiceProvider(this.sp).subscribe(data=>{alert("Service Provider is Created!!");});
+
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    // display form values on success
+    this.signupservice.createServiceProvider(this.sp).subscribe(data => { alert("Service Provider is Created!!"); });
+    this.router.navigate(['spform']);
+    //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+  }
+
+  onReset() {
+    this.submitted = false;
+    this.registerForm.reset();
+  }
+
+
+  createServiceProvider(): void {
+
+    
   };
 
 }

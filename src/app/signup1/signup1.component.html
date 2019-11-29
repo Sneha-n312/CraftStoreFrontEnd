@@ -1,57 +1,91 @@
-<div class="main">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+<div class="main" style="background-image: url(assets/images/img2.jpg)">
 
     <!-- Sign up form -->
     <section class="signup">
         <div class="container">
+                
             <div class="signup-content">
                 <div class="signup-form">
                     <h2 class="form-title">Sign up</h2>
-                    <form method="POST" class="register-form" novalidate id="register-form">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" method="POST" class="register-form" novalidate id="register-form">
                         <div class="form-group">
                             <label for="Username"><i class="fa fa-user" aria-hidden="true"></i></label>
-                            <input type="text" [(ngModel)] ="sp.username" name="userName" id="userName" placeholder="Your UserName" />
+                            <input type="text" [(ngModel)] ="sp.username"  id="userName" placeholder="Your UserName" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <div *ngIf="f.username.errors.required">User Name is required</div>
+                            </div>
                         </div> 
                         <div class="form-group">
                             <label for="firstName"><i class="fa fa-user" aria-hidden="true"></i></label>
-                            <input type="text" [(ngModel)] ="sp.firstName" name="firstName" id="firstName" placeholder="Your FirstName" />
+                            <input type="text" [(ngModel)] ="sp.firstName"  id="firstName" placeholder="Your FirstName" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="lastName"><i class="fa fa-user" aria-hidden="true"></i></label>
-                            <input type="text" [(ngModel)] ="sp.lastName" name="lastName" id="lastName" placeholder="Your LastName" />
+                            <input type="text" [(ngModel)] ="sp.lastName"  id="lastName" placeholder="Your LastName" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i></label>
-                            <input type="email" [(ngModel)] ="sp.emailId" name="email" id="email" placeholder="Your Email" />
+                            <input type="email" [(ngModel)] ="sp.emailId" id="email" placeholder="Your Email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="companyName"><i class="fa fa-envelope" aria-hidden="true"></i></label>
-                            <input type="text" [(ngModel)] ="sp.companyName" name="companyName" id="companyName" placeholder="Your Company Name" />
+                            <label for="companyName"><i class="fa fa-user" aria-hidden="true"></i></label>
+                            <input type="text" [(ngModel)] ="sp.companyName"  id="companyName" placeholder="Your Company Name" formControlName="companyName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+                            <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                                <div *ngIf="f.companyName.errors.required">Company Name is required</div>
+                            </div>
+                        </div>
+                       <div class="form-group">
+                            <label for="pass"><i class="fa fa-lock"></i></label>
+                            <input type="password" [(ngModel)] ="sp.password"  id="pass" placeholder="Password" formControlName="pass" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pass.errors }" />
+                            <div *ngIf="submitted && f.pass.errors" class="invalid-feedback">
+                                <div *ngIf="f.pass.errors.required">Password is required</div>
+                                <div *ngIf="f.pass.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" [(ngModel)] ="sp.password" name="pass" id="pass" placeholder="Password" />
-                        </div>
-                        <div class="form-group">
-                            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
-                                statements in <a href="#" class="term-service">Terms of service</a></label>
-                        </div>
+                            <label for="re_pass"><i class="fa fa-lock"></i></label>
+                            <input type="password"  id="re_pass" placeholder="Repeat your password" formControlName="re_pass" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.re_pass.errors }" />
+                            <div *ngIf="submitted && f.re_pass.errors" class="invalid-feedback">
+                                <div *ngIf="f.re_pass.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.re_pass.errors.mustMatch">Passwords must match</div>
+                            </div>
+                        </div> 
+                       
                         <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register" (click)="createServiceProvider()" />
+                            <input type="submit" name="signup" id="signup" class="form-submit"   value="Register" (click)="createServiceProvider()" style="margin-right: 10px;" />
+                            <input type="reset" name="signup" id="signup" class="form-submit"   value="Cancel" (click)="onReset()" routerLink="/welcome"/>
                         </div>
+                        <div><a class="btn "  role="button" id="service" routerLink="/signinSP">I am already  a member</a></div>
                     </form>
                 </div>
-                <div class="signup-image">
-                    <figure><img src="src\assets\images\signup-image.jpg" alt="sign up image"></figure>
-                    <a href="signin.html" class="signup-image-link">I am already member</a>
                 </div>
-            </div>
-        </div>
+                        </div>
+                <!--<div class="col-md-4">
+                        <div class="signup-image" style="padding-top: 150px;padding-right:100px;margin: 50px 1000px 0px 0px; width: 380px;">
+                            <figure><img src="assets/images/signup-image.jpg" alt="sign up image"></figure>
+                            <a href="signin.html" class="signup-image-link">I am already member</a>
+                        </div>
+                    </div>-->
+                 
+       
     </section>
 </div>
+
+
+
 <script src="js/main.js"></script>
 <script src="js/index.js"></script>

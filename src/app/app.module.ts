@@ -16,6 +16,10 @@ import { RequestformComponent } from './requestform/requestform.component';
 import { RequestserviceComponent } from './requestservice/requestservice.component';
 import { OrderformComponent } from './orderform/orderform.component';
 import { OrderserviceComponent } from './orderservice/orderservice.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SigninSPComponent } from './signin-sp/signin-sp.component';
+import { SigninUBComponent } from './signin-ub/signin-ub.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +34,17 @@ import { OrderserviceComponent } from './orderservice/orderservice.component';
     RequestformComponent,
     RequestserviceComponent,
     OrderformComponent,
-    OrderserviceComponent
+    OrderserviceComponent,
+    SigninSPComponent,
+    SigninUBComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -79,3 +79,8 @@
      margin: 20px;
      background: #EDC7B7;
 }
+div.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+  }

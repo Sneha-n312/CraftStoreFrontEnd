@@ -1,14 +1,42 @@
 .main {
     background: #EDC7B7;
-    padding: 10px 0; }
+    padding: 10px 0; 
+    background-size: cover;
+   background-position: center center;
+    background-repeat: no-repeat;
+    width: 1300px;
+    height: 800px;
+}
+
+.main2 {
+    background:  #EEE2DC;
+    padding: 10px 0; 
+    background-size: cover;
+   background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
   
 
 .jumbotron{
     padding-bottom: 20px;
     padding-top: 10px;
     background: #EEE2DC;
+    opacity: 0.8;
+ 
+        
 }
 
 #service {
     margin-top: 16px;
     background: #bab2b5; }
+
+    .carouselslide{
+        position: relative;
+        display: none;
+        -webkit-transition: 0.2s ease-in-out left;
+        -moz-transition: 0.2s ease-in-out left;
+        -o-transition: 0.2s ease-in-out left;
+        transition: 0.2s ease-in-out left;
+    }
+    

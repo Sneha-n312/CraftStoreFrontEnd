@@ -29,7 +29,7 @@ export class SignUpService {
     //     return this.httpClient.delete<ServiceProvider>("http://localhost:8001/ServiceProviders" )
     // }
 
-    public findSP(name){
+    public findSPByEmail(name){
         return this.httpClient.get<ServiceProvider>("http://localhost:8001/ServiceProviders/" + name);
     }
 }

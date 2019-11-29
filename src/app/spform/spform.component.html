@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
 <div class="main">
 
     <!-- Sign up form -->
@@ -6,22 +10,32 @@
             <div class="signup-content">
                 <div class="signup-form">
                     <h2 class="form-title">Sp form</h2>
-                    <form method="POST" class="register-form" novalidate id="register-form">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" method="POST" class="register-form" novalidate id="register-form">
                         <div class="form-group">
-                            <label for="svcName"></label>
-                            <input type="text" [(ngModel)] ="sp.svcName" name="svcName" id="svcName" placeholder="Your svcName" />
+                            <label for="svcName"><i class="fa fa-user" aria-hidden="true"></i></label>
+                            <input type="text" [(ngModel)] ="sp.svcName" formControlName="svcName" id="svcName" placeholder="Your svcName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.svcName.errors }" />
+                            <div *ngIf="submitted && f.svcName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.svcName.errors.required">Service Name is required</div>
+                                </div>
                         </div> 
                         <div class="form-group">
-                            <label for="category"></label>
-                            <input type="text" [(ngModel)] ="sp.category" name="category" id="category" placeholder="Your category" />
+                            <label for="category"><i class="fa fa-tasks" aria-hidden="true"></i></label>
+                            <input type="text" [(ngModel)] ="sp.category" formControlName="category" id="category" placeholder="Your category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }"/>
+                            <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                    <div *ngIf="f.category.errors.required">Category is required</div>
+                                </div>
                         </div>
                         <div class="form-group">
-                            <label for="desc"></label>
-                            <input type="text" [(ngModel)] ="sp.desc" name="desc" id="desc" placeholder="Description" />
+                            <label for="desc"><i class="fa fa-newspaper-o" aria-hidden="true"></i></label>
+                            <input type="text" [(ngModel)] ="sp.desc" formControlName="desc" id="desc" placeholder="Description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.desc.errors }" />
+                            <div *ngIf="submitted && f.desc.errors" class="invalid-feedback">
+                                    <div *ngIf="f.desc.errors.required">Description is required</div>
+                                </div>
                         </div>
                         
                         <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register" (click)="createSPForm()" />
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register"  (click)="createSPForm()" style="margin-right: 20px;" />
+                            <input type="reset" name="signup" id="signup" class="form-submit" routerLink="/welcome" value="Cancel" (click)="onReset()"/>
                         </div>
                     </form>
                 </div>
